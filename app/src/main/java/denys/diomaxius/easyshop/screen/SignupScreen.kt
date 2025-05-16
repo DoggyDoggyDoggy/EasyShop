@@ -26,7 +26,6 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun SignUpScreen(modifier: Modifier = Modifier) {
-
     var email by remember {
         mutableStateOf("")
     }
