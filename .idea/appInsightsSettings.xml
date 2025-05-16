@@ -22,10 +22,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="denys.diomaxius.easyshop" />
+                  <option name="mobileSdkAppId" value="1:1075403908718:android:e1cd63967dfb863cd2e87f" />
+                  <option name="projectId" value="easyshop-aebb9" />
+                  <option name="projectNumber" value="1075403908718" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
