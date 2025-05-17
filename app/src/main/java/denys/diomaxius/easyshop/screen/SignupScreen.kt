@@ -25,13 +25,15 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavHostController
 import denys.diomaxius.easyshop.AppUtil
 import denys.diomaxius.easyshop.viewmodel.AuthViewModel
 
 @Composable
 fun SignUpScreen(
     modifier: Modifier = Modifier,
-    authViewModel: AuthViewModel = viewModel()
+    authViewModel: AuthViewModel = viewModel(),
+    navHostController: NavHostController
 ) {
     val context = LocalContext.current
 
@@ -45,6 +47,10 @@ fun SignUpScreen(
 
     var password by remember {
         mutableStateOf("")
+    }
+
+    var isLoading by remember {
+        mutableStateOf(false)
     }
 
     Column(
@@ -115,18 +121,27 @@ fun SignUpScreen(
                 .fillMaxWidth()
                 .height(60.dp),
             onClick = {
+                isLoading = true
                 authViewModel.signup(
                     email = email,
                     name = name,
                     password = password
                 ) { success, message ->
                     if (success) {
-
+                        isLoading = false
+                        navHostController.navigate("home") {
+                            popUpTo("auth") {
+                                inclusive = true
+                            }
+                            launchSingleTop = true
+                        }
                     } else {
+                        isLoading = false
                         AppUtil.showToast(context, message)
                     }
                 }
-            }
+            },
+            enabled = !isLoading
         ) {
             Text(
                 text = "Signup",

@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import denys.diomaxius.easyshop.screen.AuthScreen
+import denys.diomaxius.easyshop.screen.HomeScreen
 import denys.diomaxius.easyshop.screen.LoginScreen
 import denys.diomaxius.easyshop.screen.SignUpScreen
 
@@ -26,11 +27,23 @@ fun AppNavigation(modifier: Modifier = Modifier) {
                 navHostController = navHostController
             )
         }
+
         composable(route = "login") {
-            LoginScreen(modifier)
+            LoginScreen(
+                modifier,
+                navHostController = navHostController
+            )
         }
+
         composable(route = "signup") {
-            SignUpScreen(modifier)
+            SignUpScreen(
+                modifier,
+                navHostController = navHostController
+            )
+        }
+
+        composable(route = "home") {
+            HomeScreen()
         }
     }
 }
