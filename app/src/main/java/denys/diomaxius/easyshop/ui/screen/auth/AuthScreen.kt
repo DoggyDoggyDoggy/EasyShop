@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import denys.diomaxius.easyshop.navigation.Screen
 
 @Composable
 fun AuthScreen(modifier: Modifier = Modifier, navHostController: NavHostController) {
@@ -59,7 +60,7 @@ fun AuthScreen(modifier: Modifier = Modifier, navHostController: NavHostControll
                 .fillMaxWidth()
                 .height(60.dp),
             onClick = {
-                navHostController.navigate("login") {
+                navHostController.navigate(Screen.Login.route) {
                     launchSingleTop = true
                 }
             }
@@ -77,7 +78,7 @@ fun AuthScreen(modifier: Modifier = Modifier, navHostController: NavHostControll
                 .fillMaxWidth()
                 .height(60.dp),
             onClick = {
-                navHostController.navigate("signup") {
+                navHostController.navigate(Screen.Signup.route) {
                     launchSingleTop = true
                 }
             }

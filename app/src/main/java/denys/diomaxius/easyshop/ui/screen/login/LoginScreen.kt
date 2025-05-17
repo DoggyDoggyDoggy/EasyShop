@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import denys.diomaxius.easyshop.navigation.Screen
 import denys.diomaxius.easyshop.utils.AppUtil
 
 @Composable
@@ -112,8 +113,8 @@ fun LoginScreen(
                 ) { success, message ->
                     if (success) {
                         isLoading = false
-                        navHostController.navigate("home") {
-                            popUpTo("auth") {
+                        navHostController.navigate(Screen.Home.route) {
+                            popUpTo(navHostController.graph.startDestinationId) {
                                 inclusive = true
                             }
                             launchSingleTop = true
