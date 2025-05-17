@@ -1,8 +1,7 @@
-package denys.diomaxius.easyshop
+package denys.diomaxius.easyshop.utils
 
 import android.content.Context
 import android.widget.Toast
-
 
 object AppUtil {
     fun showToast(context: Context, message: String) {

@@ -1,4 +1,4 @@
-package denys.diomaxius.easyshop.screen
+package denys.diomaxius.easyshop.ui.screen.login
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -26,22 +26,18 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
-import denys.diomaxius.easyshop.AppUtil
+import denys.diomaxius.easyshop.utils.AppUtil
 import denys.diomaxius.easyshop.viewmodel.AuthViewModel
 
 @Composable
-fun SignUpScreen(
+fun LoginScreen(
     modifier: Modifier = Modifier,
-    authViewModel: AuthViewModel = viewModel(),
-    navHostController: NavHostController
+    navHostController: NavHostController,
+    authViewModel: AuthViewModel = viewModel()
 ) {
     val context = LocalContext.current
 
     var email by remember {
-        mutableStateOf("")
-    }
-
-    var name by remember {
         mutableStateOf("")
     }
 
@@ -62,7 +58,7 @@ fun SignUpScreen(
     ) {
         Text(
             modifier = Modifier.fillMaxWidth(),
-            text = "Start your shopping journey now!",
+            text = "Welcome back!",
             style = TextStyle(
                 fontSize = 24.sp,
                 fontFamily = FontFamily.Monospace,
@@ -74,7 +70,7 @@ fun SignUpScreen(
 
         Text(
             modifier = Modifier.fillMaxWidth(),
-            text = "Create an account",
+            text = "Sign in to your account",
             style = TextStyle(
                 fontSize = 20.sp
             )
@@ -88,17 +84,6 @@ fun SignUpScreen(
             onValueChange = { email = it },
             label = {
                 Text(text = "Email address")
-            }
-        )
-
-        Spacer(modifier = Modifier.height(10.dp))
-
-        OutlinedTextField(
-            modifier = Modifier.fillMaxWidth(),
-            value = name,
-            onValueChange = { name = it },
-            label = {
-                Text(text = "Full name")
             }
         )
 
@@ -122,9 +107,8 @@ fun SignUpScreen(
                 .height(60.dp),
             onClick = {
                 isLoading = true
-                authViewModel.signup(
+                authViewModel.login(
                     email = email,
-                    name = name,
                     password = password
                 ) { success, message ->
                     if (success) {
@@ -144,7 +128,7 @@ fun SignUpScreen(
             enabled = !isLoading
         ) {
             Text(
-                text = "Signup",
+                text = "Login",
                 fontSize = 22.sp
             )
         }

@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.firestore
-import denys.diomaxius.easyshop.model.UserModel
+import denys.diomaxius.easyshop.data.model.UserModel
 
 class AuthViewModel : ViewModel() {
     private val auth = Firebase.auth

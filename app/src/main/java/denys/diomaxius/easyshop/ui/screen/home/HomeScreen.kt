@@ -1,4 +1,4 @@
-package denys.diomaxius.easyshop.screen
+package denys.diomaxius.easyshop.ui.screen.home
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

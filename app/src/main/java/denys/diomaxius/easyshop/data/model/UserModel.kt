@@ -1,4 +1,4 @@
-package denys.diomaxius.easyshop.model
+package denys.diomaxius.easyshop.data.model
 
 data class UserModel(
     val name: String,

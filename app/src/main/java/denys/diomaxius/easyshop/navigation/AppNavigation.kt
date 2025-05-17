@@ -1,4 +1,4 @@
-package denys.diomaxius.easyshop
+package denys.diomaxius.easyshop.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -8,10 +8,10 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
-import denys.diomaxius.easyshop.screen.AuthScreen
-import denys.diomaxius.easyshop.screen.HomeScreen
-import denys.diomaxius.easyshop.screen.LoginScreen
-import denys.diomaxius.easyshop.screen.SignUpScreen
+import denys.diomaxius.easyshop.ui.screen.auth.AuthScreen
+import denys.diomaxius.easyshop.ui.screen.home.HomeScreen
+import denys.diomaxius.easyshop.ui.screen.login.LoginScreen
+import denys.diomaxius.easyshop.ui.screen.signup.SignUpScreen
 
 @Composable
 fun AppNavigation(modifier: Modifier = Modifier) {
