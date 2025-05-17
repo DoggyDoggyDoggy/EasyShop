@@ -1,4 +1,4 @@
-package denys.diomaxius.easyshop.ui.screen.home.pages
+package denys.diomaxius.easyshop.ui.screen.home.pages.home
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -9,43 +9,33 @@ import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import coil3.compose.AsyncImage
-import com.google.firebase.Firebase
-import com.google.firebase.firestore.firestore
 import com.tbuonomo.viewpagerdotsindicator.compose.DotsIndicator
 import com.tbuonomo.viewpagerdotsindicator.compose.model.DotGraphic
 import com.tbuonomo.viewpagerdotsindicator.compose.type.WormIndicatorType
 
 @Composable
-fun HomePage(modifier: Modifier = Modifier) {
-    BannerView()
+fun HomePage(
+    modifier: Modifier = Modifier,
+    viewModel: HomePageViewModel = hiltViewModel()
+) {
+    val banners by viewModel.banners.collectAsState()
+
+    BannerView(bannerList = banners)
 }
 
 @Composable
-fun BannerView(modifier: Modifier = Modifier) {
-    var bannerList by remember {
-        mutableStateOf<List<String>>(emptyList())
-    }
-
-    LaunchedEffect(Unit) {
-        Firebase.firestore.collection("data")
-            .document("banners")
-            .get().addOnCompleteListener {
-                if (it.isSuccessful) {
-                    bannerList = it.result.get("urls") as List<String>
-                }
-            }
-    }
-
+fun BannerView(
+    modifier: Modifier = Modifier,
+    bannerList: List<String>
+) {
     Column(modifier = modifier) {
         val pagerState = rememberPagerState(0) { bannerList.size }
 

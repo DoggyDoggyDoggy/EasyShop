@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import denys.diomaxius.easyshop.ui.screen.home.pages.CartPage
 import denys.diomaxius.easyshop.ui.screen.home.pages.FavoritePage
-import denys.diomaxius.easyshop.ui.screen.home.pages.HomePage
+import denys.diomaxius.easyshop.ui.screen.home.pages.home.HomePage
 import denys.diomaxius.easyshop.ui.screen.home.pages.ProfilePage
 
 @Composable

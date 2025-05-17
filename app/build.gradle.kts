@@ -55,6 +55,9 @@ dependencies {
     //Dots indicator
     implementation(libs.dotsindicator)
 
+    //Coroutines
+    implementation (libs.kotlinx.coroutines.play.services)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
