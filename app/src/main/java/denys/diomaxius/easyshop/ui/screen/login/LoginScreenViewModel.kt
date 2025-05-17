@@ -1,23 +1,17 @@
 package denys.diomaxius.easyshop.ui.screen.login
 
 import androidx.lifecycle.ViewModel
-import com.google.firebase.Firebase
-import com.google.firebase.auth.auth
+import dagger.hilt.android.lifecycle.HiltViewModel
+import denys.diomaxius.easyshop.domain.usecase.LoginUseCase
+import javax.inject.Inject
 
-class LoginScreenViewModel : ViewModel() {
-    private val auth = Firebase.auth
-
+@HiltViewModel
+class LoginScreenViewModel @Inject constructor(
+    private val loginUseCase: LoginUseCase
+) : ViewModel() {
     fun login(
         email: String,
         password: String,
         onResult: (Boolean, String) -> Unit
-    ) {
-        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
-            if (it.isSuccessful) {
-                onResult(true, "Login success")
-            } else {
-                onResult(false, it.exception?.localizedMessage ?: "Something went wrong")
-            }
-        }
-    }
+    ) = loginUseCase(email = email, password = password, onResult = onResult)
 }

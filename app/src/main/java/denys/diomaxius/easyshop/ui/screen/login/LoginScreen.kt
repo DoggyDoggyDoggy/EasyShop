@@ -24,7 +24,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import denys.diomaxius.easyshop.navigation.Screen
 import denys.diomaxius.easyshop.utils.AppUtil
@@ -33,7 +33,7 @@ import denys.diomaxius.easyshop.utils.AppUtil
 fun LoginScreen(
     modifier: Modifier = Modifier,
     navHostController: NavHostController,
-    viewModel: LoginScreenViewModel = viewModel()
+    viewModel: LoginScreenViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
 
