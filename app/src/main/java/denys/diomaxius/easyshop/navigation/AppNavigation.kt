@@ -14,40 +14,40 @@ import denys.diomaxius.easyshop.ui.screen.login.LoginScreen
 import denys.diomaxius.easyshop.ui.screen.signup.SignUpScreen
 
 @Composable
-fun AppNavigation(modifier: Modifier = Modifier) {
-
-    val navHostController: NavHostController = rememberNavController()
-
+fun AppNavigation(
+    modifier: Modifier = Modifier,
+    navHostController: NavHostController = rememberNavController()
+) {
     val isLoggedIn = Firebase.auth.currentUser != null
-    val firstPage = if (isLoggedIn) "home" else "auth"
+    val firstPage = if (isLoggedIn) Screen.Home.route else Screen.Auth.route
 
     NavHost(
         modifier = modifier,
         navController = navHostController,
         startDestination = firstPage
     ) {
-        composable(route = "auth") {
+        composable(route = Screen.Auth.route) {
             AuthScreen(
                 modifier = modifier,
                 navHostController = navHostController
             )
         }
 
-        composable(route = "login") {
+        composable(route = Screen.Login.route) {
             LoginScreen(
                 modifier,
                 navHostController = navHostController
             )
         }
 
-        composable(route = "signup") {
+        composable(route = Screen.Signup.route) {
             SignUpScreen(
                 modifier,
                 navHostController = navHostController
             )
         }
 
-        composable(route = "home") {
+        composable(route = Screen.Home.route) {
             HomeScreen(
                 modifier,
                 navHostController = navHostController
