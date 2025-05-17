@@ -27,13 +27,12 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import denys.diomaxius.easyshop.utils.AppUtil
-import denys.diomaxius.easyshop.viewmodel.AuthViewModel
 
 @Composable
 fun LoginScreen(
     modifier: Modifier = Modifier,
     navHostController: NavHostController,
-    authViewModel: AuthViewModel = viewModel()
+    viewModel: LoginScreenViewModel = viewModel()
 ) {
     val context = LocalContext.current
 
@@ -107,7 +106,7 @@ fun LoginScreen(
                 .height(60.dp),
             onClick = {
                 isLoading = true
-                authViewModel.login(
+                viewModel.login(
                     email = email,
                     password = password
                 ) { success, message ->

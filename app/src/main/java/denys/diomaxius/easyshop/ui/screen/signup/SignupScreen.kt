@@ -27,12 +27,11 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import denys.diomaxius.easyshop.utils.AppUtil
-import denys.diomaxius.easyshop.viewmodel.AuthViewModel
 
 @Composable
 fun SignUpScreen(
     modifier: Modifier = Modifier,
-    authViewModel: AuthViewModel = viewModel(),
+    viewModel: SignupScreenViewModel = viewModel(),
     navHostController: NavHostController
 ) {
     val context = LocalContext.current
@@ -122,7 +121,7 @@ fun SignUpScreen(
                 .height(60.dp),
             onClick = {
                 isLoading = true
-                authViewModel.signup(
+                viewModel.signup(
                     email = email,
                     name = name,
                     password = password
