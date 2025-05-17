@@ -6,6 +6,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.google.firebase.Firebase
+import com.google.firebase.auth.auth
 import denys.diomaxius.easyshop.screen.AuthScreen
 import denys.diomaxius.easyshop.screen.HomeScreen
 import denys.diomaxius.easyshop.screen.LoginScreen
@@ -16,10 +18,13 @@ fun AppNavigation(modifier: Modifier = Modifier) {
 
     val navHostController: NavHostController = rememberNavController()
 
+    val isLoggedIn = Firebase.auth.currentUser != null
+    val firstPage = if (isLoggedIn) "home" else "auth"
+
     NavHost(
         modifier = modifier,
         navController = navHostController,
-        startDestination = "auth"
+        startDestination = firstPage
     ) {
         composable(route = "auth") {
             AuthScreen(
@@ -43,7 +48,10 @@ fun AppNavigation(modifier: Modifier = Modifier) {
         }
 
         composable(route = "home") {
-            HomeScreen()
+            HomeScreen(
+                modifier,
+                navHostController = navHostController
+            )
         }
     }
 }
