@@ -18,13 +18,12 @@ fun AppNavigation(
     modifier: Modifier = Modifier,
     navHostController: NavHostController = rememberNavController()
 ) {
-    val isLoggedIn = Firebase.auth.currentUser != null
-    val firstPage = if (isLoggedIn) Screen.Home.route else Screen.Auth.route
+    val startDestination = startDestination()
 
     NavHost(
         modifier = modifier,
         navController = navHostController,
-        startDestination = firstPage
+        startDestination = startDestination
     ) {
         composable(route = Screen.Auth.route) {
             AuthScreen(
@@ -54,4 +53,9 @@ fun AppNavigation(
             )
         }
     }
+}
+
+fun startDestination(): String {
+    val isLoggedIn = Firebase.auth.currentUser != null
+    return if (isLoggedIn) Screen.Home.route else Screen.Auth.route
 }
