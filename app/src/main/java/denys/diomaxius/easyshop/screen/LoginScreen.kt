@@ -17,22 +17,36 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
+import denys.diomaxius.easyshop.AppUtil
+import denys.diomaxius.easyshop.viewmodel.AuthViewModel
 
 @Composable
-fun LoginScreen(modifier: Modifier = Modifier, navHostController: NavHostController) {
+fun LoginScreen(
+    modifier: Modifier = Modifier,
+    navHostController: NavHostController,
+    authViewModel: AuthViewModel = viewModel()
+) {
+    val context = LocalContext.current
+
     var email by remember {
         mutableStateOf("")
     }
 
     var password by remember {
         mutableStateOf("")
+    }
+
+    var isLoading by remember {
+        mutableStateOf(false)
     }
 
     Column(
@@ -92,8 +106,26 @@ fun LoginScreen(modifier: Modifier = Modifier, navHostController: NavHostControl
                 .fillMaxWidth()
                 .height(60.dp),
             onClick = {
-
-            }
+                isLoading = true
+                authViewModel.login(
+                    email = email,
+                    password = password
+                ) { success, message ->
+                    if (success) {
+                        isLoading = false
+                        navHostController.navigate("home") {
+                            popUpTo("auth") {
+                                inclusive = true
+                            }
+                            launchSingleTop = true
+                        }
+                    } else {
+                        isLoading = false
+                        AppUtil.showToast(context, message)
+                    }
+                }
+            },
+            enabled = !isLoading
         ) {
             Text(
                 text = "Login",

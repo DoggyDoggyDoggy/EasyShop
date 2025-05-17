@@ -34,7 +34,17 @@ class AuthViewModel : ViewModel() {
         }
     }
 
-    fun login() {
-
+    fun login(
+        email: String,
+        password: String,
+        onResult: (Boolean, String) -> Unit
+    ) {
+        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener {
+            if (it.isSuccessful) {
+                onResult(true, "Login success")
+            } else {
+                onResult(false, it.exception?.localizedMessage ?: "Something went wrong")
+            }
+        }
     }
 }
