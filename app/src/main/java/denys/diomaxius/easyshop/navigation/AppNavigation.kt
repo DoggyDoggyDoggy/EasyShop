@@ -12,7 +12,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import denys.diomaxius.easyshop.ui.screen.auth.AuthScreen
 import denys.diomaxius.easyshop.ui.screen.home.HomeScreen
-import denys.diomaxius.easyshop.ui.screen.home.pages.CategoryProductPage
+import denys.diomaxius.easyshop.ui.screen.home.pages.product.CategoryProductPage
 import denys.diomaxius.easyshop.ui.screen.login.LoginScreen
 import denys.diomaxius.easyshop.ui.screen.signup.SignUpScreen
 
