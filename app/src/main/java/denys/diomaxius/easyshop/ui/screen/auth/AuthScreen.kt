@@ -20,12 +20,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
+import denys.diomaxius.easyshop.navigation.LocalNavController
 import denys.diomaxius.easyshop.navigation.Screen
 
 @Composable
-fun AuthScreen(modifier: Modifier = Modifier, navHostController: NavHostController) {
+fun AuthScreen(modifier: Modifier = Modifier) {
+    val navHostController = LocalNavController.current
     Column(
         modifier = modifier
             .fillMaxSize()
@@ -94,7 +94,5 @@ fun AuthScreen(modifier: Modifier = Modifier, navHostController: NavHostControll
 @Preview
 @Composable
 fun AuthScreenPreview() {
-    AuthScreen(
-        navHostController = rememberNavController()
-    )
+    AuthScreen()
 }

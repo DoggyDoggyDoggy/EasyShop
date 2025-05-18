@@ -12,17 +12,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavHostController
 import denys.diomaxius.easyshop.ui.screen.home.pages.CartPage
 import denys.diomaxius.easyshop.ui.screen.home.pages.FavoritePage
 import denys.diomaxius.easyshop.ui.screen.home.pages.home.HomePage
 import denys.diomaxius.easyshop.ui.screen.home.pages.ProfilePage
 
 @Composable
-fun HomeScreen(
-    modifier: Modifier = Modifier,
-    navHostController: NavHostController
-) {
+fun HomeScreen() {
     var selectedIndex by remember {
         mutableStateOf(0)
     }

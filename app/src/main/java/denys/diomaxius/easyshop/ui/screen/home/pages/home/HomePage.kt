@@ -1,5 +1,6 @@
 package denys.diomaxius.easyshop.ui.screen.home.pages.home
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -21,7 +22,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.TextStyle
@@ -30,11 +30,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import coil3.compose.AsyncImage
 import com.tbuonomo.viewpagerdotsindicator.compose.DotsIndicator
 import com.tbuonomo.viewpagerdotsindicator.compose.model.DotGraphic
 import com.tbuonomo.viewpagerdotsindicator.compose.type.WormIndicatorType
 import denys.diomaxius.easyshop.data.model.Category
+import denys.diomaxius.easyshop.navigation.LocalNavController
+import denys.diomaxius.easyshop.navigation.Screen
 
 @Composable
 fun HomePage(
@@ -43,6 +46,7 @@ fun HomePage(
 ) {
     val banners by viewModel.banners.collectAsState()
     val categories by viewModel.categories.collectAsState()
+    val navHostController = LocalNavController.current
 
     Column(
         modifier = modifier
@@ -64,22 +68,24 @@ fun HomePage(
         Spacer(modifier = Modifier.height(12.dp))
 
         CategoryView(
-            categoryList = categories
+            categoryList = categories,
+            navHostController = navHostController
         )
     }
 }
 
 @Composable
 fun CategoryView(
-    modifier: Modifier = Modifier,
-    categoryList: List<Category>
+    categoryList: List<Category>,
+    navHostController: NavHostController
 ) {
     LazyRow(
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         items(categoryList) { category ->
             CategoryItem(
-                category = category
+                category = category,
+                navHostController = navHostController
             )
         }
     }
@@ -87,7 +93,8 @@ fun CategoryView(
 
 @Composable
 fun CategoryItem(
-    category: Category
+    category: Category,
+    navHostController: NavHostController
 ) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -97,6 +104,11 @@ fun CategoryItem(
             modifier = Modifier
                 .size(100.dp)
                 .clip(RoundedCornerShape(12.dp))
+                .clickable {
+                    navHostController.navigate("${Screen.CategoryProduct.route}/${category.id}") {
+                        launchSingleTop = true
+                    }
+                }
             ,
             model = category.imageUrl,
             contentScale = ContentScale.Fit,

@@ -25,16 +25,16 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavHostController
+import denys.diomaxius.easyshop.navigation.LocalNavController
 import denys.diomaxius.easyshop.navigation.Screen
 import denys.diomaxius.easyshop.utils.AppUtil
 
 @Composable
 fun SignUpScreen(
     modifier: Modifier = Modifier,
-    viewModel: SignupScreenViewModel = hiltViewModel(),
-    navHostController: NavHostController
+    viewModel: SignupScreenViewModel = hiltViewModel()
 ) {
+    val navHostController = LocalNavController.current
     val context = LocalContext.current
 
     var email by remember {
