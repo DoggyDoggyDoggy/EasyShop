@@ -1,5 +1,6 @@
 package denys.diomaxius.easyshop.ui.screen.home.pages.product
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,8 +14,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ProductPageViewModel @Inject constructor(
-    private val getProductsUseCase: GetProductsUseCase
+    private val getProductsUseCase: GetProductsUseCase,
+    savedStateHandle: SavedStateHandle
 ) : ViewModel() {
+    private val categoryId: String = checkNotNull(savedStateHandle["categoryId"])
+
     private val _products = MutableStateFlow<List<Product>>(emptyList())
     val products: StateFlow<List<Product>> = _products.asStateFlow()
 
@@ -24,7 +28,7 @@ class ProductPageViewModel @Inject constructor(
 
     fun getProducts() {
         viewModelScope.launch {
-            _products.value = getProductsUseCase()
+            _products.value = getProductsUseCase(categoryId)
         }
     }
 }

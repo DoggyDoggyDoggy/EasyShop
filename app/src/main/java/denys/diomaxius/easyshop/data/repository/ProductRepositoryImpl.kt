@@ -11,11 +11,12 @@ import kotlinx.coroutines.tasks.await
 class ProductRepositoryImpl(
     private val firestore: FirebaseFirestore = Firebase.firestore
 ) : ProductRepository {
-    override suspend fun getProducts(): List<Product> {
+    override suspend fun getProducts(categoryId: String): List<Product> {
         val doc = firestore
             .collection("data").
             document("stock")
             .collection("products")
+            .whereEqualTo("category", categoryId)
             .get()
             .await()
         return doc.documents.map {

@@ -24,9 +24,7 @@ fun CategoryProductPage(
         )
         Text(text = "Products name:")
         products.forEach {
-            if (it.category == categoryId) {
-                Text(text = it.title)
-            }
+            Text(text = it.title)
         }
     }
 }
