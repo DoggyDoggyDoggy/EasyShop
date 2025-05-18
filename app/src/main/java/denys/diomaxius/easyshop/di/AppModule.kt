@@ -8,6 +8,8 @@ import denys.diomaxius.easyshop.data.repository.AuthRepository
 import denys.diomaxius.easyshop.data.repository.AuthRepositoryImpl
 import denys.diomaxius.easyshop.data.repository.BannerRepository
 import denys.diomaxius.easyshop.data.repository.BannerRepositoryImpl
+import denys.diomaxius.easyshop.data.repository.CategoryRepository
+import denys.diomaxius.easyshop.data.repository.CategoryRepositoryImpl
 import javax.inject.Singleton
 
 @Module
@@ -20,4 +22,8 @@ object AppModule {
     @Provides
     @Singleton
     fun provideBannerRepository(): BannerRepository = BannerRepositoryImpl()
+
+    @Provides
+    @Singleton
+    fun provideCategoriesRepository(): CategoryRepository = CategoryRepositoryImpl()
 }

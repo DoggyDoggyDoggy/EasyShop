@@ -3,7 +3,7 @@ package denys.diomaxius.easyshop.data.repository
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.firestore
-import denys.diomaxius.easyshop.data.model.UserModel
+import denys.diomaxius.easyshop.data.model.User
 
 class AuthRepositoryImpl : AuthRepository {
     private val auth = Firebase.auth
@@ -32,9 +32,9 @@ class AuthRepositoryImpl : AuthRepository {
         auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener {
             if (it.isSuccessful) {
                 val userId = it.result?.user?.uid
-                val userModel = UserModel(name, email, userId!!)
+                val user = User(name, email, userId!!)
 
-                firestore.collection("users").document(userId).set(userModel)
+                firestore.collection("users").document(userId).set(user)
                     .addOnCompleteListener {
                         if (it.isSuccessful) {
                             onResult(true, "Sign up success")

@@ -1,7 +1,7 @@
 package denys.diomaxius.easyshop.data.model
 
-data class UserModel(
+data class Category(
+    val id: String,
     val name: String,
-    val email: String,
-    val uid: String
+    val imageUrl: String
 )
