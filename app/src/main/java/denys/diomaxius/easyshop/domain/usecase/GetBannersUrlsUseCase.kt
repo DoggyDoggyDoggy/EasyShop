@@ -1,6 +1,6 @@
 package denys.diomaxius.easyshop.domain.usecase
 
-import denys.diomaxius.easyshop.data.repository.BannerRepository
+import denys.diomaxius.easyshop.domain.repository.BannerRepository
 import javax.inject.Inject
 
 class GetBannersUrlsUseCase @Inject constructor(

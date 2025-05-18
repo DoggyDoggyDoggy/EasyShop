@@ -1,4 +1,4 @@
-package denys.diomaxius.easyshop.data.repository
+package denys.diomaxius.easyshop.domain.repository
 
 import denys.diomaxius.easyshop.data.model.Category
 

@@ -4,6 +4,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.firestore
 import denys.diomaxius.easyshop.data.model.User
+import denys.diomaxius.easyshop.domain.repository.AuthRepository
 
 class AuthRepositoryImpl : AuthRepository {
     private val auth = Firebase.auth

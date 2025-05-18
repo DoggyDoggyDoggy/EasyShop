@@ -3,6 +3,7 @@ package denys.diomaxius.easyshop.data.repository
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
+import denys.diomaxius.easyshop.domain.repository.BannerRepository
 import kotlinx.coroutines.tasks.await
 
 class BannerRepositoryImpl (

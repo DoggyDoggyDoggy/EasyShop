@@ -4,6 +4,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.firestore
 import denys.diomaxius.easyshop.data.model.Category
+import denys.diomaxius.easyshop.domain.repository.CategoryRepository
 import kotlinx.coroutines.tasks.await
 
 class CategoryRepositoryImpl(

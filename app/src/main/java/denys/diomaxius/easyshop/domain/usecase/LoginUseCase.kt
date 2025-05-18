@@ -1,6 +1,6 @@
 package denys.diomaxius.easyshop.domain.usecase
 
-import denys.diomaxius.easyshop.data.repository.AuthRepository
+import denys.diomaxius.easyshop.domain.repository.AuthRepository
 import javax.inject.Inject
 
 class LoginUseCase @Inject constructor(

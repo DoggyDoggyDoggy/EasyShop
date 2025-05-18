@@ -1,4 +1,4 @@
-package denys.diomaxius.easyshop.data.repository
+package denys.diomaxius.easyshop.domain.repository
 
 interface AuthRepository {
     fun login(email: String, password: String, onResult: (Boolean, String) -> Unit)

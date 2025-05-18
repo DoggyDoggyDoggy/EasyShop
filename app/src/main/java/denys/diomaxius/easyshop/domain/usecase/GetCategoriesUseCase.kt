@@ -1,7 +1,7 @@
 package denys.diomaxius.easyshop.domain.usecase
 
 import denys.diomaxius.easyshop.data.model.Category
-import denys.diomaxius.easyshop.data.repository.CategoryRepository
+import denys.diomaxius.easyshop.domain.repository.CategoryRepository
 import javax.inject.Inject
 
 class GetCategoriesUseCase @Inject constructor(
