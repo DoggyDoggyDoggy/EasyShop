@@ -29,6 +29,8 @@ class ProductPageViewModel @Inject constructor(
     fun getProducts() {
         viewModelScope.launch {
             _products.value = getProductsUseCase(categoryId)
+        //Testing purpose to multiple products to see hows is look like
+        //_products.value = _products.value.plus(_products.value).plus(_products.value).plus(_products.value)
         }
     }
 }
