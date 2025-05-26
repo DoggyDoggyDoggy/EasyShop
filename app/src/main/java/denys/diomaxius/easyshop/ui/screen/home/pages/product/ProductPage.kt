@@ -37,7 +37,6 @@ import denys.diomaxius.easyshop.data.model.Product
 
 @Composable
 fun CategoryProductPage(
-    categoryId: String,
     viewModel: ProductPageViewModel = hiltViewModel()
 ) {
     val products by viewModel.products.collectAsState()
