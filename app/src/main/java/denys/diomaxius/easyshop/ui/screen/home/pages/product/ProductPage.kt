@@ -1,5 +1,6 @@
 package denys.diomaxius.easyshop.ui.screen.home.pages.product
 
+import android.content.Context
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -26,6 +27,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -46,6 +48,7 @@ fun CategoryProductPage(
 ) {
     val products by viewModel.products.collectAsState()
     val navHostController = LocalNavController.current
+    val context = LocalContext.current
 
     LazyColumn(
         modifier = Modifier
@@ -61,7 +64,14 @@ fun CategoryProductPage(
                     ProductItemView(
                         modifier = Modifier.weight(1f),
                         product = it,
-                        navHostController = navHostController
+                        navHostController = navHostController,
+                        context = context,
+                        addProductToCart = { productId, context ->
+                            viewModel.addItemToCart(
+                                productId = productId,
+                                context = context
+                            )
+                        }
                     )
                 }
                 if (rowProducts.size == 1) {
@@ -78,7 +88,9 @@ fun CategoryProductPage(
 fun ProductItemView(
     modifier: Modifier = Modifier,
     product: Product,
-    navHostController: NavHostController
+    navHostController: NavHostController,
+    context: Context,
+    addProductToCart: (String, Context) -> Unit
 ) {
     Card(
         modifier = modifier
@@ -142,7 +154,12 @@ fun ProductItemView(
                 Spacer(modifier = Modifier.weight(1f))
 
                 IconButton(
-                    onClick = { /*TODO*/ }
+                    onClick = {
+                        addProductToCart(
+                            product.id,
+                            context
+                        )
+                    }
                 ) {
                     Icon(
                         imageVector = Icons.Default.ShoppingCart,

@@ -28,6 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
@@ -45,6 +46,7 @@ fun ProductDetailsScreen(
     productId: String
 ) {
     val product by viewModel.product.collectAsState()
+    val context = LocalContext.current
 
     Column(
         modifier = Modifier
@@ -81,7 +83,10 @@ fun ProductDetailsScreen(
                 .height(50.dp)
                 .fillMaxWidth(),
             onClick = {
-                //TODO
+                viewModel.addItemToCart(
+                    productId = productId,
+                    context = context
+                )
             }
         ) {
             Text(

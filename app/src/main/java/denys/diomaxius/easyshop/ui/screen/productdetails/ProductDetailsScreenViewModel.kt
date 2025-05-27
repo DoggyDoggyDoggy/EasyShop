@@ -1,10 +1,12 @@
 package denys.diomaxius.easyshop.ui.screen.productdetails
 
+import android.content.Context
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import denys.diomaxius.easyshop.data.model.Product
+import denys.diomaxius.easyshop.domain.usecase.AddItemToCartUseCase
 import denys.diomaxius.easyshop.domain.usecase.GetProductDetailsUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -15,6 +17,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ProductDetailsScreenViewModel @Inject constructor(
     private val getProductDetailsUseCase: GetProductDetailsUseCase,
+    private val addItemToCartUseCase: AddItemToCartUseCase,
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
     private val productId: String = checkNotNull(savedStateHandle["productId"])
@@ -29,6 +32,12 @@ class ProductDetailsScreenViewModel @Inject constructor(
     fun getProduct() {
         viewModelScope.launch {
             _product.value = getProductDetailsUseCase(productId)
+        }
+    }
+
+    fun addItemToCart(productId: String, context: Context) {
+        viewModelScope.launch {
+            addItemToCartUseCase(productId, context)
         }
     }
 }

@@ -8,10 +8,12 @@ import denys.diomaxius.easyshop.domain.repository.AuthRepository
 import denys.diomaxius.easyshop.data.repository.AuthRepositoryImpl
 import denys.diomaxius.easyshop.domain.repository.BannerRepository
 import denys.diomaxius.easyshop.data.repository.BannerRepositoryImpl
+import denys.diomaxius.easyshop.data.repository.CartRepositoryImpl
 import denys.diomaxius.easyshop.domain.repository.CategoryRepository
 import denys.diomaxius.easyshop.data.repository.CategoryRepositoryImpl
 import denys.diomaxius.easyshop.data.repository.ProductDetailsRepositoryImpl
 import denys.diomaxius.easyshop.data.repository.ProductRepositoryImpl
+import denys.diomaxius.easyshop.domain.repository.CartRepository
 import denys.diomaxius.easyshop.domain.repository.ProductDetailsRepository
 import denys.diomaxius.easyshop.domain.repository.ProductRepository
 import javax.inject.Singleton
@@ -38,4 +40,8 @@ object AppModule {
     @Provides
     @Singleton
     fun provideProductDetailsRepository(): ProductDetailsRepository = ProductDetailsRepositoryImpl()
+
+    @Provides
+    @Singleton
+    fun provideCartRepository(): CartRepository = CartRepositoryImpl()
 }
