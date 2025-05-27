@@ -17,16 +17,6 @@ class CategoryRepositoryImpl(
             .collection("categories")
             .get()
             .await()
-        return doc.documents.map {
-            val id = it.getString("id") ?: ""
-            val name = it.getString("name") ?: ""
-            val imageUrl = it.getString("imageUrl") ?: ""
-
-            Category(
-                id = id,
-                name = name,
-                imageUrl = imageUrl
-            )
-        }
+        return doc.documents.mapNotNull { it.toObject(Category::class.java) }
     }
 }
