@@ -8,6 +8,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import denys.diomaxius.easyshop.data.model.Product
 import denys.diomaxius.easyshop.domain.usecase.AddItemToCartUseCase
 import denys.diomaxius.easyshop.domain.usecase.GetProductsUseCase
+import denys.diomaxius.easyshop.utils.AppUtil
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -39,7 +40,18 @@ class ProductPageViewModel @Inject constructor(
 
     fun addItemToCart(productId: String, context: Context) {
         viewModelScope.launch {
-            addItemToCartUseCase(productId, context)
+            try {
+                addItemToCartUseCase(productId)
+                AppUtil.showToast(
+                    context = context,
+                    message = "Item added to cart"
+                )
+            } catch (e: Exception) {
+                AppUtil.showToast(
+                    context = context,
+                    message = "Something went wrong"
+                )
+            }
         }
     }
 }
