@@ -29,4 +29,12 @@ class CartRepositoryImpl(
             .await()
         return snapshot.get("cartItems") as? Map<String, Long> ?: emptyMap()
     }
+
+    override suspend fun removeItemFromCart(productId: String) {
+        firestore
+            .collection("users")
+            .document(auth.uid!!)
+            .update("cartItems.$productId", FieldValue.increment(-1))
+            .await()
+    }
 }
