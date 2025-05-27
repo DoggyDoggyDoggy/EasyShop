@@ -14,6 +14,7 @@ import denys.diomaxius.easyshop.ui.screen.auth.AuthScreen
 import denys.diomaxius.easyshop.ui.screen.home.HomeScreen
 import denys.diomaxius.easyshop.ui.screen.home.pages.product.CategoryProductPage
 import denys.diomaxius.easyshop.ui.screen.login.LoginScreen
+import denys.diomaxius.easyshop.ui.screen.productdetails.ProductDetailsScreen
 import denys.diomaxius.easyshop.ui.screen.signup.SignUpScreen
 
 val LocalNavController = compositionLocalOf<NavHostController> {
@@ -52,6 +53,11 @@ fun AppNavigation(
             composable(route = "${Screen.CategoryProduct.route}/{categoryId}") {
                 val categoryId = it.arguments?.getString("categoryId")
                 CategoryProductPage(categoryId = categoryId ?: "")
+            }
+
+            composable(route = "${Screen.ProductDetails.route}/{productId}") {
+                val productId = it.arguments?.getString("productId")
+                ProductDetailsScreen(productId = productId ?: "")
             }
         }
     }

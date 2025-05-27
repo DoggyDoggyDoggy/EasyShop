@@ -1,5 +1,6 @@
 package denys.diomaxius.easyshop.ui.screen.home.pages.product
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -32,14 +33,19 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import coil3.compose.AsyncImage
 import denys.diomaxius.easyshop.data.model.Product
+import denys.diomaxius.easyshop.navigation.LocalNavController
+import denys.diomaxius.easyshop.navigation.Screen
 
 @Composable
 fun CategoryProductPage(
-    viewModel: ProductPageViewModel = hiltViewModel()
+    viewModel: ProductPageViewModel = hiltViewModel(),
+    categoryId: String
 ) {
     val products by viewModel.products.collectAsState()
+    val navHostController = LocalNavController.current
 
     LazyColumn(
         modifier = Modifier
@@ -54,7 +60,8 @@ fun CategoryProductPage(
                 rowProducts.forEach {
                     ProductItemView(
                         modifier = Modifier.weight(1f),
-                        product = it
+                        product = it,
+                        navHostController = navHostController
                     )
                 }
                 if (rowProducts.size == 1) {
@@ -70,18 +77,23 @@ fun CategoryProductPage(
 @Composable
 fun ProductItemView(
     modifier: Modifier = Modifier,
-    product: Product
+    product: Product,
+    navHostController: NavHostController
 ) {
     Card(
         modifier = modifier
-            .padding(8.dp),
+            .padding(8.dp)
+            .clickable {
+                navHostController.navigate("${Screen.ProductDetails.route}/${product.id}") {
+                    launchSingleTop = true
+                }
+            },
         shape = RoundedCornerShape(16.dp),
         colors = CardDefaults.cardColors(
             containerColor = MaterialTheme.colorScheme.surface
         ),
-        elevation = CardDefaults.cardElevation(8.dp),
-
-        ) {
+        elevation = CardDefaults.cardElevation(8.dp)
+    ) {
         Column(
             modifier = Modifier.padding(
                 horizontal = 8.dp

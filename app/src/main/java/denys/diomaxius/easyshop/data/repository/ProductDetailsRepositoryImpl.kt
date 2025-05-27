@@ -18,14 +18,6 @@ class ProductDetailsRepositoryImpl(
             .document(productId)
             .get()
             .await()
-        return doc.toObject(Product::class.java) ?: Product(
-            id = "",
-            title = "",
-            description = "",
-            price = "",
-            actualPrice = "",
-            category = "",
-            images = emptyList()
-        )
+        return doc.toObject(Product::class.java) ?: Product()
     }
 }

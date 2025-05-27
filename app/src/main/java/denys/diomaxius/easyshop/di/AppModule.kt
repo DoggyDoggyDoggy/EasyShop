@@ -10,7 +10,9 @@ import denys.diomaxius.easyshop.domain.repository.BannerRepository
 import denys.diomaxius.easyshop.data.repository.BannerRepositoryImpl
 import denys.diomaxius.easyshop.domain.repository.CategoryRepository
 import denys.diomaxius.easyshop.data.repository.CategoryRepositoryImpl
+import denys.diomaxius.easyshop.data.repository.ProductDetailsRepositoryImpl
 import denys.diomaxius.easyshop.data.repository.ProductRepositoryImpl
+import denys.diomaxius.easyshop.domain.repository.ProductDetailsRepository
 import denys.diomaxius.easyshop.domain.repository.ProductRepository
 import javax.inject.Singleton
 
@@ -32,4 +34,8 @@ object AppModule {
     @Provides
     @Singleton
     fun provideProductRepository(): ProductRepository = ProductRepositoryImpl()
+
+    @Provides
+    @Singleton
+    fun provideProductDetailsRepository(): ProductDetailsRepository = ProductDetailsRepositoryImpl()
 }
