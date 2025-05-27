@@ -12,7 +12,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import denys.diomaxius.easyshop.ui.screen.home.pages.CartPage
+import denys.diomaxius.easyshop.ui.screen.home.pages.cart.CartPage
 import denys.diomaxius.easyshop.ui.screen.home.pages.FavoritePage
 import denys.diomaxius.easyshop.ui.screen.home.pages.home.HomePage
 import denys.diomaxius.easyshop.ui.screen.home.pages.ProfilePage
