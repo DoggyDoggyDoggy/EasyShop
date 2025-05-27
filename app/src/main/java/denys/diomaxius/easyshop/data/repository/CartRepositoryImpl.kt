@@ -20,4 +20,13 @@ class CartRepositoryImpl(
             .update("cartItems.$productId", FieldValue.increment(1))
             .await()
     }
+
+    override suspend fun getCartItems(): Map<String, Long> {
+        val snapshot = firestore
+            .collection("users")
+            .document(auth.uid!!)
+            .get()
+            .await()
+        return snapshot.get("cartItems") as? Map<String, Long> ?: emptyMap()
+    }
 }
