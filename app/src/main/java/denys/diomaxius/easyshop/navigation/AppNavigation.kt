@@ -11,6 +11,7 @@ import androidx.navigation.compose.rememberNavController
 import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import denys.diomaxius.easyshop.ui.screen.auth.AuthScreen
+import denys.diomaxius.easyshop.ui.screen.checkout.CheckOutScreen
 import denys.diomaxius.easyshop.ui.screen.home.HomeScreen
 import denys.diomaxius.easyshop.ui.screen.home.pages.product.CategoryProductPage
 import denys.diomaxius.easyshop.ui.screen.login.LoginScreen
@@ -58,6 +59,10 @@ fun AppNavigation(
             composable(route = "${Screen.ProductDetails.route}/{productId}") {
                 val productId = it.arguments?.getString("productId")
                 ProductDetailsScreen(productId = productId ?: "")
+            }
+
+            composable(route = Screen.Checkout.route) {
+                CheckOutScreen()
             }
         }
     }

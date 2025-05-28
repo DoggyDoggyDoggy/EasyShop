@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
 import androidx.lifecycle.viewModelScope
-import denys.diomaxius.easyshop.data.model.Product
+import denys.diomaxius.easyshop.data.model.CartItemUiState
 import denys.diomaxius.easyshop.domain.usecase.AddItemToCartUseCase
 import denys.diomaxius.easyshop.domain.usecase.GetProductDetailsUseCase
 import denys.diomaxius.easyshop.domain.usecase.RemoveItemFromCartUseCase
@@ -16,11 +16,6 @@ import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-
-data class CartItemUiState(
-    val product: Product,
-    val quantity: Long
-)
 
 @HiltViewModel
 class CartPageViewModel @Inject constructor(

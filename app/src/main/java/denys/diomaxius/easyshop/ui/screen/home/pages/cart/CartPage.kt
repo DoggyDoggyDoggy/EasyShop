@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.IconButton
@@ -32,6 +33,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
 import coil3.compose.AsyncImage
 import denys.diomaxius.easyshop.data.model.Product
+import denys.diomaxius.easyshop.navigation.LocalNavController
+import denys.diomaxius.easyshop.navigation.Screen
 
 
 @Composable
@@ -40,6 +43,7 @@ fun CartPage(
     viewModel: CartPageViewModel = hiltViewModel()
 ) {
     val cartItems by viewModel.cartItemsUi.collectAsState()
+    val navHostController = LocalNavController.current
 
     LaunchedEffect(Unit) {
         viewModel.loadCart()
@@ -56,7 +60,9 @@ fun CartPage(
             fontSize = 22.sp
         )
 
-        LazyColumn {
+        LazyColumn(
+            modifier = Modifier.weight(1f)
+        ){
             items(cartItems) { productList ->
                 if (productList.quantity > 0) {
                     CartItem(
@@ -67,6 +73,21 @@ fun CartPage(
                     )
                 }
             }
+        }
+
+        Button(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(50.dp),
+            onClick = {
+                navHostController.navigate(Screen.Checkout.route) {
+                    launchSingleTop = true
+                }
+            }
+        ) {
+            Text(
+                text = "Checkout"
+            )
         }
     }
 }

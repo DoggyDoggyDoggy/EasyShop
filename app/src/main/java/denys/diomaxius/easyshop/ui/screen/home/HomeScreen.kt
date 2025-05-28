@@ -9,7 +9,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import denys.diomaxius.easyshop.ui.screen.home.pages.cart.CartPage
@@ -19,7 +19,7 @@ import denys.diomaxius.easyshop.ui.screen.home.pages.ProfilePage
 
 @Composable
 fun HomeScreen() {
-    var selectedIndex by remember {
+    var selectedIndex by rememberSaveable {
         mutableStateOf(0)
     }
 
